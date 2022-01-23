@@ -14,6 +14,6 @@ CONSTRAINT pk PRIMARY KEY (user, site)
 );
 
 
-INSERT INTO USERS VALUES('Aydin', 'myPassword');
-INSERT INTO PASSES VALUES('Aydin','adogru', 'yahoo.com', '324224');
+/*INSERT INTO USERS VALUES('Aydin', 'myPassword');
+INSERT INTO PASSES VALUES('Aydin','adogru', 'yahoo.com', '324224');*/
 

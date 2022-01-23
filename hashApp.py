@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 
 def addUser(user, masterPassword):
-    con = sqlite3.connect('testdb.db')
+    con = sqlite3.connect('project.db')
     cur = con.cursor()
     #first check that the user does not exist already
     cur.execute("SELECT user FROM USERS WHERE user = :user1", {"user1": user})
@@ -16,7 +16,7 @@ def addUser(user, masterPassword):
     con.close()
 
 def addService(user, userName, service):
-    con = sqlite3.connect('testdb.db')
+    con = sqlite3.connect('project.db')
     cur = con.cursor()
     cur.execute("SELECT password FROM PASSES WHERE user = :user1 AND site = :service1", {"user1": user, "service1":service})
     if(cur.fetchone() is None):
@@ -40,7 +40,7 @@ def addService(user, userName, service):
 
 
 def getPassword(user, service):
-    con = sqlite3.connect('testdb.db')
+    con = sqlite3.connect('project.db')
     cur = con.cursor()
 
     cur.execute("SELECT userName, password FROM PASSES WHERE user = :user1 AND site = :service1", {"user1": user, "service1":service})
@@ -51,8 +51,9 @@ def getPassword(user, service):
     print(val[0])
     return val 
 
+#for testing
 def getAll():
-    con = sqlite3.connect('testdb.db')
+    con = sqlite3.connect('project.db')
     cur = con.cursor()
 
     cur.execute("SELECT * FROM PASSES")
