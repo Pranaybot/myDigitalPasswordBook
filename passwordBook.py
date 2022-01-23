@@ -1,4 +1,5 @@
 from tkinter import *
+import sys
 
 
 def getPassword(user,service):
@@ -14,8 +15,12 @@ window.configure(bg='white')
 rowI = 0
 
 window.title("My Password Book")
-titleLabel = Label(window, text="My Digital Password Book", font=("Monospace", 10),  width=38, height=1)
 
+titleLabel = Label(window, text="My Digital Password Book", font=("Monospace", 10, 'bold'),  width=38, height=1)
+titleLabel.grid(column=1, row=rowI)
+rowI+=1
+
+titleLabel = Label(window, text="--", font=("Monospace", 10),  width=38, height=1,bg='white')
 titleLabel.grid(column=1, row=rowI)
 rowI+=1
 
@@ -24,25 +29,49 @@ def retrieve_input():
     input = self.myText_Box.get("1.0",END)
 
 
-retrieveLabel = Label(window, text="Retrieve Account Information", font=("Monospace", 10), width=38, height=1,bg='white')
+retrieveLabel = Label(window, text="~ Retrieve Account Information ~", font=("Monospace", 10), width=38, height=1,bg='white')
 retrieveLabel.grid(column=1, row=rowI)
 rowI+=1
 
-service_RetrieveLabel = Label(window, text="Service:", font=("Monospace", 10), width=38, height=1,bg='white')
-service_RetrieveInput = Entry(window,width=10)
-service_RetrieveButton = Button(window, text="Retrieve Account Info", command=getPassword("",""), font=("Monospace", 10))
+service_RetrieveLabel = Label(window, text="Service:", font=("Monospace", 10), height=1,bg='white')
+service_RetrieveInput = Entry(window)
+service_RetrieveButton = Button(window, text="Retrieve Account Info", command=getPassword("",""), font=("Monospace", 10), cursor="trek")
 
-service_RetrieveLabel.grid(column=1, row=rowI)
-service_RetrieveInput.grid(column=2, row=rowI)
-service_RetrieveButton.grid(column=3, row=rowI)
+service_RetrieveLabel.grid(column=1, row=rowI, sticky = W, pady = 2)
+rowI+=1
+service_RetrieveInput.grid(column=1, row=rowI, pady = 2)
+rowI+=1
+service_RetrieveButton.grid(column=1, row=rowI, pady = 2)
+rowI+=1
+
+frame = Frame(window)
+frame.configure()
+frame.grid(column=1, row=rowI, sticky = W, pady = 2)
+
+waitingForResultsLabel = Label(window, text="(Result will show up here)", font=("Monospace", 5), height = 1,width = windWidth,bg='gray95')
+#waitingForResultsLabel.grid(column=1, row=rowI, pady = 2)
 rowI+=1
 
 
+def keydown(e):
+    sys.exit()
 
+#notify: can make multiple pop-ups at once by calling Tk() multiple times
+    
+titleLabel2 = Label(window, text="--", font=("Monospace", 10),  width=38, height=1,bg='white')
+titleLabel2.grid(column=1, row=rowI)
+rowI+=1
 #v Handle Adding new Account Infomation v
 
 
-
+titleLabel3 = Label(window, text="--", font=("Monospace", 10),  width=38, height=1,bg='white')
+titleLabel3.grid(column=1, row=rowI)
+rowI+=1
+#v Keypress to kill on startup feature v
+frame = Frame(window, width=0, height=0)
+frame.bind("<KeyPress>", keydown)
+frame.grid(column=1, row=rowI)
+frame.focus_set()
 
 
 window.mainloop()
