@@ -36,6 +36,7 @@ rowI+=1
 service_RetrieveLabel = Label(window, text="Service:", font=("Monospace", 10), height=1,bg='white')
 service_RetrieveInput = Entry(window)
 service_RetrieveButton = Button(window, text="Retrieve Account Info", command=getPassword("",""), font=("Monospace", 10), cursor="trek")
+#TODO: have this button grab user's account info (username password email) and put it in the resultsLabel as one big string
 
 service_RetrieveLabel.grid(column=1, row=rowI, sticky = W, pady = 2)
 rowI+=1
@@ -44,12 +45,8 @@ rowI+=1
 service_RetrieveButton.grid(column=1, row=rowI, pady = 2)
 rowI+=1
 
-frame = Frame(window)
-frame.configure()
-frame.grid(column=1, row=rowI, sticky = W, pady = 2)
-
-waitingForResultsLabel = Label(window, text="(Result will show up here)", font=("Monospace", 5), height = 1,width = windWidth,bg='gray95')
-#waitingForResultsLabel.grid(column=1, row=rowI, pady = 2)
+resultsLabel = Label(window, text="", font=("Monospace", 10), height=1,bg='white') #Label(window, text="(Result will show up here)", font=("Monospace", 5), height = 1,width = windWidth,bg='gray95')
+resultsLabel.grid(column=1, row=rowI, pady = 2)
 rowI+=1
 
 
